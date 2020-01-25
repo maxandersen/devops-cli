@@ -9,7 +9,7 @@
 1. Clone the project git clone 
 2. mvn clean install
 
-## How-to run the project
+## How to run the project
 
 The project has one command : 
 
