@@ -6,7 +6,7 @@
 - Maven
 - Git
 
-1. Clone the project git clone 
+1. Clone the project : git clone https://github.com/Gerben/devops-cli.git
 2. mvn clean install
 
 ## How to run the project
