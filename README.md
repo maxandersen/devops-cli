@@ -10,4 +10,4 @@
 
 ## How to run the project directly
 
-`jbang `
+`jbang https://raw.githubusercontent.com/Gerben/devops-cli/jbang/devopscli.java`
