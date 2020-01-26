@@ -3,21 +3,11 @@
 ## Prerequisites
 
 - Java 11
-- Maven
-- Git
+- [jbang](https://github.com/maxandersen/jbang)
 
 1. Clone the project : git clone https://github.com/Gerben/devops-cli.git
-2. mvn clean install
+2. `jbang devopscli.java {hostname}`
 
-## How to run the project
+## How to run the project directly
 
-The project has one command : 
-
-```java
-AkamaiInfoCommand
-```
-
-Execute the command : 
-```java
-java -jar /target/opencli-1.0-SNAPSHOT.jar {hostname}
-```
+`jbang `

@@ -1,4 +1,12 @@
-package com.gerbenvis.opencli;
+//usr/bin/env jbang "$0" "$@" ; exit $?
+//DEPS info.picocli:picocli:4.1.4
+//DEPS org.projectlombok:lombok:1.18.10
+
+import picocli.CommandLine;
+import picocli.CommandLine.Command;
+import picocli.CommandLine.Parameters;
+
+import java.util.concurrent.Callable;
 
 import javax.naming.Context;
 import javax.naming.NamingException;
@@ -10,7 +18,28 @@ import java.net.UnknownHostException;
 import java.util.Optional;
 import java.util.Properties;
 
-public class NSLookup {
+import lombok.Builder;
+import lombok.Data;
+
+final class StringUtils {
+
+    public static String stripLatest(final String value) {
+        if (value != null && value.length() >= 1) {
+            return value.substring(0, value.length() - 1);
+        }
+        return value;
+    }
+}
+
+@Data
+@Builder
+class LookupResponse {
+
+    private String ip;
+    private String cname;
+}
+
+class NSLookup {
 
     public static LookupResponse getAkamaiStagingAddress(final String hostname) {
         final LookupResponse response = NSLookup.lookup(hostname);
@@ -44,5 +73,23 @@ public class NSLookup {
             e.printStackTrace();
         }
         return Optional.empty();
+    }
+}
+
+@CommandLine.Command(name = "akamai info", description = "Prints akamai staging ip address of a host")
+public class devopscli implements Callable<Integer> {
+
+    @CommandLine.Parameters(index = "0", description = "The host name")
+    private String host;
+
+    public static void main(String... args) {
+        int exitCode = new CommandLine(new devopscli()).execute(args);
+        System.exit(exitCode);
+    }
+
+    @Override
+    public Integer call() {
+        System.out.println("Akamai Staging Ip for : " + host + " = " + NSLookup.getAkamaiStagingAddress(host).getIp());
+        return 0;
     }
 }
