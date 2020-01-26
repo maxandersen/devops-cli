@@ -19,5 +19,5 @@ AkamaiInfoCommand
 
 Execute the command : 
 ```java
-java -jar /target/opencli-1.0-SNAPSHOT.jar {hostname}
+java -jar /target/devops-cli-1.0-SNAPSHOT.jar {hostname}
 ```
